@@ -94,6 +94,7 @@ def game_loop():
                 ball_x - ball_r, ball_y - ball_r,
                 ball_x + ball_r, ball_y + ball_r)
     root.after(20, game_loop)
-
+color = random.choice(['red','yellow','lime','orange','teal','purple','pink'])
+canvas.itemconfig(ball,fill= color)
 game_loop()
 root.mainloop()
