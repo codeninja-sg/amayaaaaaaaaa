@@ -1,14 +1,14 @@
-import tinkter as tk
+import tkinter as tk
 import random
 
-root = tk.(TK)
+root = tk.Tk()
 root.title("Snake - 1")
 
 SIZE = 20
 W = 400
 H = 400
 
-canvas = tk.Canvas(root, width=W, hight=H, bg="white")
+canvas = tk.Canvas(root, width=W, height=H, bg="white")
 canvas.pack()
 
 snake = [(10, 10)]
@@ -16,16 +16,44 @@ dx = 1
 dy = 0
 
 food =(random.randint(0, W//SIZE - 1),
-       random.randite(0,H//SIZE - 1))
+       random.randint(0,H//SIZE - 1))
+
 
 def draw():
-    canvas.delete("all")
-
+    canvas.delete("all")  
     fx, fy = food
     canvas.create_rectangle(fx*SIZE, fy*SIZE,
-                            fx*SIZE+SIZE, fy*SIZE+SIZE
-                            fill="green")
+                                fx*SIZE+SIZE, fy*SIZE+SIZE,
+                                fill="green")
+
+    for (x, y) in snake:
+        canvas.create_rectangle(x*SIZE, y*SIZE,
+                                x*SIZE+SIZE, y*SIZE+SIZE,
+                                fill='green')
     
-    def game_loop():
-        global snake, food]
+def game_loop():
+    global snake, food
+
+    head_x, head_y = snake[0]
+    new_head = (head_x + dx, head_y + dy)
+
+    snake.insert(0,new_head)
+    if new_head == food:
+
+        foodd = (random.randint(0, W//SIZE - 1),
+                 random.randint(0, H//SIZE - 1))
+    else:
+        snake.pop()
+
+    draw()
+    root.after(150, game_loop)    
+
+def up(event):
+    global dx, dy
+    dx, dy = 0, -1
+
+
+    
+
+root.mainloop()
         
