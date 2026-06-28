@@ -40,7 +40,7 @@ def game_loop():
     snake.insert(0,new_head)
     if new_head == food:
 
-        foodd = (random.randint(0, W//SIZE - 1),
+        food = (random.randint(0, W//SIZE - 1),
                  random.randint(0, H//SIZE - 1))
     else:
         snake.pop()
@@ -53,7 +53,24 @@ def up(event):
     dx, dy = 0, -1
 
 
+def down (event):
+     global dx, dy
+     dx, dy = 0, 1
     
+def left(event):
+    global dx, dy
+    dx, dy = -1, 0
 
+def right(event):
+    global dx, dy
+    dx, dy = 1, 0
+
+root.bind("<Up>", up)
+root.bind("<Down>", down)
+root.bind("<Left>", left)
+root.bind("<Right>", right)
+
+draw()
+root.after(150, game_loop)  
 root.mainloop()
         
